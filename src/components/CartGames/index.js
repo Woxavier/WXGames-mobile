@@ -9,7 +9,7 @@ export default function CartGames(props){
       <Description>
         <Title>{props.name}</Title>
 
-        <Price>Preço: {props.price}</Price>
+        <Price>Preço: R$ {props.price}</Price>
       </Description>
 
       {props.children}

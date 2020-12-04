@@ -45,6 +45,7 @@ export default function Home(){
       }))
     }
   };
+  
 
   function handleAddRemoveGameCart(item){
     let gameId = item.id
@@ -52,7 +53,7 @@ export default function Home(){
 
     cart.map((games, index) =>{
       if(games.id == gameId){
-        return findImage = {existe: true, index: index}
+        return searchImage = {exist: true, index: index}
       }
     })
 
@@ -63,7 +64,6 @@ export default function Home(){
         id: item.id,
         name: item.name,
         price: item.price,
-        image: item.image
       })
     }
     
