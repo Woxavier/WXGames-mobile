@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, Options, Bold, Title } from './styles'
+import { Container, Options, Bold } from './styles'
 
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 

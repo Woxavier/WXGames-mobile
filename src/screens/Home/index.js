@@ -25,20 +25,24 @@ export default function Home(){
       setGames(Products.sort((a,b) => {
         return b.price - a.price
       }))
-    }else if(order == 'priceBA'){
+
+    } else if(order == 'priceBA'){
       setGames(Products.sort((a,b) => {
         return a.price - b.price
       }))
+
     } else if(order == "alphabeticAZ"){
       setGames(Products.sort((a,b) =>{
         if(a.name < b.name) return -1;
         if(a.name > b.name) return 1;
       }))
+
     } else if(order == "alphabeticZA"){
       setGames(Products.sort((a,b) =>{
         if(a.name < b.name) return 1;
         if(a.name > b.name) return -1;
       }))
+
     } else if (order == 'score'){
       setGames(Products.sort((a,b) => {
         return b.score - a.score
@@ -65,8 +69,7 @@ export default function Home(){
         name: item.name,
         price: item.price,
       })
-    }
-    
+    }    
 
     console.log(cart)
   }
