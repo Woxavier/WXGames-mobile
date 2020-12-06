@@ -5,6 +5,8 @@ import TopBar from '../../components/TopBar'
 import { CartContext } from '../../context/Cart'
 import { Wrapper, Container, Title } from './styles'
 
+import {Text} from 'react-native'
+
 import CartGames from '../../components/CartGames'
 
 import { FontAwesome } from '@expo/vector-icons'; 
@@ -25,6 +27,7 @@ import Horizon from '../../images/horizon-zero-dawn.png'
 export default function Carrinho(){
 
   const { cart } = useContext(CartContext)
+  
   let freight = 0
   let totalPrice = 0
   let subtotal = 0
@@ -32,7 +35,7 @@ export default function Carrinho(){
 
   const [refreshing, setRefreshing] = React.useState(false);
 
-  function onRefresh () {
+  function onRefresh(){
     setRefreshing(true);
 
     setTimeout(() => setRefreshing(false), 2000);
@@ -64,13 +67,17 @@ export default function Carrinho(){
         <Title>Carrinho</Title>
 
         {cart.map( gamesCart =>{
-          subtotal+=gamesCart.price
+          subtotal += gamesCart.price
+          subtotal = parseFloat(subtotal.toFixed(2))
+
           if(subtotal > 250){
             freight = 'Frete grátis'
             totalPrice = subtotal
+
           } else {
-            freight = 10*cart.length
-            totalPrice = freight + subtotal
+            freight =`R$ ${10*cart.length}.00`
+            totalPrice = subtotal + 10*cart.length
+
           }
 
           if(gamesCart.id == 312){
