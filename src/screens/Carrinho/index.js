@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { RefreshControl } from 'react-native'
 
 import TopBar from '../../components/TopBar'
 import { CartContext } from '../../context/Cart'
 import { Wrapper, Container, Title } from './styles'
-
-import {Text} from 'react-native'
 
 import CartGames from '../../components/CartGames'
 
@@ -27,13 +25,14 @@ import Horizon from '../../images/horizon-zero-dawn.png'
 export default function Carrinho(){
 
   const { cart } = useContext(CartContext)
-  
+
+  let subtotalNumber = 0
   let freight = 0
   let totalPrice = 0
   let subtotal = 0
   let img = null
 
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   function onRefresh(){
     setRefreshing(true);
@@ -67,17 +66,17 @@ export default function Carrinho(){
         <Title>Carrinho</Title>
 
         {cart.map( gamesCart =>{
-          subtotal += gamesCart.price
-          subtotal = parseFloat(subtotal.toFixed(2))
+          subtotalNumber += gamesCart.price
+          subtotal = subtotalNumber.toFixed(2)
 
-          if(subtotal > 250){
+          if(subtotalNumber > 250){
             freight = 'Frete grátis'
-            totalPrice = subtotal
+            totalPrice = subtotalNumber.toFixed(2)
 
           } else {
             freight =`R$ ${10*cart.length}.00`
-            totalPrice = subtotal + 10*cart.length
-
+            totalPrice = (subtotalNumber + 10*cart.length)
+            totalPrice = totalPrice.toFixed(2)
           }
 
           if(gamesCart.id == 312){
@@ -101,7 +100,7 @@ export default function Carrinho(){
           }
 
           return (
-            <CartGames key={gamesCart.id} name={gamesCart.name} price={gamesCart.price} source={img}>
+            <CartGames key={gamesCart.id} name={gamesCart.name} price={gamesCart.price.toFixed(2)} source={img}>
               <TouchableOpacity onPress={() => handleRemoveGameCart(gamesCart)}>
                 <FontAwesome name="trash-o" size={24} color="black" />
               </TouchableOpacity>

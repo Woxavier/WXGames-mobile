@@ -105,7 +105,7 @@ export default function Home(){
 
         {games.map((item, index) =>{
           return (
-            <Games key={item.id} source={item.image} name={item.name} price={item.price} score={item.score} >
+            <Games key={item.id} source={item.image} name={item.name} price={item.price.toFixed(2)} score={item.score} >
               <TouchableOpacity key={index} onPress={() => handleAddRemoveGameCart(item)}>
                 <Entypo name="shopping-cart" size={24} color={'black'}/>
               </TouchableOpacity>
